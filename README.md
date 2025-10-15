@@ -1,59 +1,49 @@
-# TaskManager
+📝 Personal Task Manager App (Angular)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+A modern and functional Task Manager built with Angular and LocalStorage.
 
-## Development server
+This app allows you to add, edit, delete, prioritize, and search tasks with a visually appealing design. Perfect for learning Angular and building productivity tools.
 
-To start a local development server, run:
+🌟 Features
 
-```bash
-ng serve
-```
+Add new tasks with:
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Task Name
 
-## Code scaffolding
+Priority (High, Medium, Low)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Edit existing tasks
 
-```bash
-ng generate component component-name
-```
+Delete tasks
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Mark tasks as Completed
 
-```bash
-ng generate --help
-```
+Search / Filter tasks by name
 
-## Building
+Multi-colored task cards for a modern look
 
-To build the project run:
+Responsive design for desktop and mobile
 
-```bash
-ng build
-```
+Stores tasks in LocalStorage for data persistence
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+🎨 UI / Styling
 
-## Running unit tests
+Centered container with hover and pop-in animations
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Gradient backgrounds for body and task cards
 
-```bash
-ng test
-```
+Priority badges with different colors
 
-## Running end-to-end tests
+Smooth input focus glow
 
-For end-to-end (e2e) testing, run:
+Fully responsive layout
 
-```bash
-ng e2e
-```
+🛠️ Technologies Used
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Angular 19 (or latest)
 
-## Additional Resources
+TypeScript
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+HTML / CSS
+
+LocalStorage
