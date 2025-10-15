@@ -1,0 +1,219 @@
+/* === Overall Page Styling === */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #89f7fe, #66a6ff, #fbc2eb, #a6c1ee);
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* === App Container === */
+.container {
+  width: 90%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 25px;
+  padding: 35px 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: popIn 0.8s ease forwards;
+}
+
+@keyframes popIn {
+  0% { opacity: 0; transform: scale(0.8) translateY(-20px); }
+  60% { opacity: 1; transform: scale(1.05) translateY(0); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* === Header === */
+h2 {
+  text-align: center;
+  font-weight: 700;
+  font-size: 26px;
+  color: #333;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+}
+
+/* === Add Task Section === */
+.add-task {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.add-task input[type="text"] {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.add-task input[type="text"]:focus {
+  border-color: #6a5af9;
+  box-shadow: 0 0 6px rgba(106, 90, 249, 0.4);
+}
+
+.add-task button {
+  background: linear-gradient(135deg, #6a5af9, #9b5de5);
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.add-task button:hover {
+  background: linear-gradient(135deg, #9b5de5, #f15bb5);
+}
+
+select {
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 15px;
+  outline: none;
+}
+
+/* === Task List === */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  border-radius: 15px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s, background 0.2s;
+  position: relative;
+}
+
+/* Multi-colored task cards */
+li:nth-child(odd) {
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+}
+li:nth-child(even) {
+  background: linear-gradient(135deg, #84fab0, #8fd3f4);
+}
+li:hover {
+  transform: translateY(-2px);
+}
+
+/* Task Text */
+span {
+  flex: 1;
+  margin-left: 12px;
+  font-size: 16px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #ddd;
+}
+
+/* Edit Mode Input */
+li input[type="text"] {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 6px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+/* Delete Button */
+button.delete {
+  background: #ff6b6b;
+  color: white;
+}
+
+button.delete:hover {
+  background: #ff4757;
+}
+
+/* Edit Button */
+button.edit {
+  background: #4d96ff;
+  color: white;
+}
+
+button.edit:hover {
+  background: #1e90ff;
+}
+
+/* === Priority Badges === */
+.badge {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+  color: white;
+}
+
+.badge.High { background: #ff4d6d; }
+.badge.Medium { background: #ffa500; }
+.badge.Low { background: #00c851; }
+
+/* === Checkbox Styling === */
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #6a5af9;
+}
+
+/* === Responsive Design === */
+@media (max-width: 500px) {
+  .container { padding: 25px; }
+  li { flex-direction: column; align-items: flex-start; }
+  .buttons button { width: 100%; margin-top: 6px; }
+  .add-task button { padding: 10px 18px; }
+}

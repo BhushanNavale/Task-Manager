@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>Personal Task Manager</h2>
+
+  <div class="add-task">
+    <input type="text" [(ngModel)]="newTask" placeholder="Enter new task" />
+
+    <select [(ngModel)]="selectedPriority">
+      <option value="High">High</option>
+      <option value="Medium" selected>Medium</option>
+      <option value="Low">Low</option>
+    </select>
+
+    <button (click)="addTask()">Add</button>
+  </div>
+
+  <ul>
+    <li *ngFor="let task of tasks">
+      <input type="checkbox" [(ngModel)]="task.completed" (change)="toggleTask(task)" />
+
+      <span *ngIf="!task.isEditing" [class.completed]="task.completed">
+        {{ task.name }}
+        <span class="badge" [ngClass]="task.priority">{{ task.priority }}</span>
+      </span>
+
+      <input *ngIf="task.isEditing" type="text" [(ngModel)]="task.name" />
+
+      <div class="buttons">
+        <button *ngIf="!task.isEditing" class="edit" (click)="editTask(task)">Edit</button>
+        <button *ngIf="task.isEditing" class="edit" (click)="saveEdit(task, task.name)">Save</button>
+        <button *ngIf="task.isEditing" class="delete" (click)="cancelEdit(task)">Cancel</button>
+        <button class="delete" (click)="deleteTask(task.id)">Delete</button>
+      </div>
+    </li>
+  </ul>
+</div>
