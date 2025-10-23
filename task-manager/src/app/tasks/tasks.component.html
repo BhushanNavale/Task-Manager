@@ -1,0 +1,28 @@
+<div class="task-list">
+  <h1>Task Manager</h1>
+  <form (submit)="addTask()">
+    <input type="text" [(ngModel)]="newTask" placeholder="Add a new task" required />
+    <select [(ngModel)]="selectedPriority">
+      <option value="High">High</option>
+      <option value="Medium" selected>Medium</option>
+      <option value="Low">Low</option>
+    </select>
+    <button type="submit">Add Task</button>
+  </form>
+
+  <ul>
+    <li *ngFor="let task of tasks">
+      <input type="checkbox" [(ngModel)]="task.completed" (change)="toggleTask(task)" />
+      <span [ngClass]="{'completed': task.completed}">{{ task.name }}</span>
+      <span class="priority">{{ task.priority }}</span>
+      <button (click)="editTask(task)">Edit</button>
+      <button (click)="deleteTask(task.id)">Delete</button>
+
+      <div *ngIf="task.isEditing">
+        <input type="text" [(ngModel)]="task.name" />
+        <button (click)="saveEdit(task, task.name)">Save</button>
+        <button (click)="cancelEdit(task)">Cancel</button>
+      </div>
+    </li>
+  </ul>
+</div>

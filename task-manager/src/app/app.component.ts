@@ -1,25 +1,28 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { App } from '../app';
-import { FormsModule } from '@angular/forms';
-import { NgClass, NgFor, NgIf } from '@angular/common';
-
-import { HttpClientModule } from '@angular/common/http';
-import { TaskService } from '../task-service';
+import { TasksService } from './services/tasks.service';
+import { Task } from './models/task.model';
 
 @Component({
-  selector: 'app-tasks',
-  standalone: true,
-  imports: [FormsModule, NgFor, NgIf, NgClass,HttpClientModule],
-  templateUrl: './tasks.html',
-  styleUrls: ['./tasks.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
-export class Tasks {
+export class AppComponent {
   tasks: Task[] = [];
   newTask: string = '';
   selectedPriority: 'High' | 'Medium' | 'Low' = 'Medium';
 
-  constructor(private tasksService : TaskService) {}
+  constructor(private tasksService: TasksService) {}
+
+  ngOnInit() {
+    this.loadTasks();
+  }
+
+  loadTasks() {
+    this.tasksService.getTasks().subscribe(tasks => {
+      this.tasks = tasks;
+    });
+  }
 
   addTask() {
     if (this.newTask.trim() === '') return;
@@ -27,29 +30,24 @@ export class Tasks {
       id: Date.now(),
       name: this.newTask,
       completed: false,
-      isEditing: false,
       priority: this.selectedPriority
     };
-
-    this.tasksService.addTask(task).subscribe(created => {
-      this.tasks.push(created);
+    this.tasksService.addTask(task).subscribe(() => {
+      this.tasks.push(task);
       this.newTask = '';
       this.selectedPriority = 'Medium';
-      alert('Task added successfully!');
     });
   }
 
   deleteTask(id: number) {
     this.tasksService.deleteTask(id).subscribe(() => {
       this.tasks = this.tasks.filter(task => task.id !== id);
-      alert('Task deleted successfully!');
     });
   }
 
   toggleTask(task: Task) {
     task.completed = !task.completed;
     this.tasksService.updateTask(task).subscribe();
-    alert('Task completed successfully!');
   }
 
   editTask(task: Task) {
@@ -61,16 +59,9 @@ export class Tasks {
     task.name = updatedName;
     task.isEditing = false;
     this.tasksService.updateTask(task).subscribe();
-    alert('Task updated successfully!');
   }
 
   cancelEdit(task: Task) {
     task.isEditing = false;
-  }
-
-  ngOnInit() {
-    this.tasksService.getTasks().subscribe(tasks => {
-      this.tasks = tasks || [];
-    });
   }
 }
